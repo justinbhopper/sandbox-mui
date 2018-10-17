@@ -4,7 +4,9 @@ import * as React from 'react';
 import { 
 	AppBar, 
 	Avatar,
+	Button,
 	createStyles,
+	IconButton,
 	InputAdornment,
 	TextField,
 	Theme,
@@ -41,13 +43,13 @@ const styles = (theme: Theme) => createStyles({
 		display: 'flex',
 		alignItems: 'center',
 		justifyContent: 'space-between',
-		width: 300,
 		color: 'rgba(0, 0, 0, 0.5)'
 	},
 	profileMenu: {
 		display: 'flex',
 		alignItems: 'center',
-		justifyContent: 'space-between'
+		justifyContent: 'space-between',
+		color: 'inherit'
 	},
 	profileName: {
 		marginLeft: theme.spacing.unit,
@@ -84,13 +86,13 @@ export default withStyles(styles)(
 							}}
 							/>
 						<div className={classes.actions}>
-							<MailIcon />
-							<NotificationsIcon />
-							<div className={classes.profileMenu}>
+							<IconButton><MailIcon /></IconButton>
+							<IconButton><NotificationsIcon /></IconButton>
+							<Button className={classes.profileMenu}>
 								<Avatar src="https://material-ui.com/static/images/uxceo-128.jpg" />
 								<Typography variant="subtitle2" className={classes.profileName}>Wendy Williams</Typography>
 								<ArrowIcon />
-							</div>
+							</Button>
 						</div>
 					</Toolbar>
 				</AppBar>
