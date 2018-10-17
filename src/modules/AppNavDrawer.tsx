@@ -2,7 +2,6 @@ import * as React from 'react';
 
 import { 
 	createStyles, 
-	Divider,
 	Grid,
 	List,
 	ListItem,
@@ -20,16 +19,11 @@ import PeopleIcon from '@material-ui/icons/PeopleOutlined'
 import ReceiptIcon from '@material-ui/icons/ReceiptOutlined'
 import SettingsIcon from '@material-ui/icons/SettingsOutlined'
 
-import { RemarkableHealthIcon } from 'assets/Icons';
-
 const styles = (theme: Theme) => createStyles({
 	root: {
-		padding: '10px 0 0 0',
-		minHeight: '100vh'
-	},
-	logo: {
-		display: 'block',
-		margin: '4px auto'
+		display: 'flex',
+		flexGrow: 1,
+		padding: '10px 0 0 0'
 	},
 	menuItem: {
 		'&:hover': {
@@ -42,22 +36,18 @@ const styles = (theme: Theme) => createStyles({
 	}
 });
 
-export interface IAppNavBarProps extends WithStyles<typeof styles> {
+export interface IAppNavDrawerProps extends WithStyles<typeof styles> {
 	compact?: boolean;
 }
 
 export default withStyles(styles)(
-	class extends React.Component<IAppNavBarProps> {
+	class extends React.Component<IAppNavDrawerProps> {
 		public render() {
 			const { classes, compact } = this.props;
 
 			return (
 				<Grid container={true} direction="column" className={classes.root} justify="space-between">
 					<Grid container={true} direction="column">
-						<div className={classes.logo}>
-							<RemarkableHealthIcon fill="red" stroke="white" size="large" />
-						</div>
-						<Divider />
 						<List>
 							<ListItem button={true} className={classes.menuItem}>
 								<ListItemIcon><DashboardIcon /></ListItemIcon>

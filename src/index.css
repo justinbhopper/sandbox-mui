@@ -5,3 +5,8 @@ body {
 	font-family: 'Roboto', 'Helvetica Neue', Arial, Helvetica, sans-serif;
 	color: #4a4a4a;
 }
+
+#root {
+	display: flex;
+	flex-direction: column;
+}

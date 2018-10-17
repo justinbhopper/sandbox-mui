@@ -10,6 +10,7 @@ import {
 	Grid,
 	Icon,
 	IconButton,
+	InputAdornment,
 	InputLabel,
 	Menu,
 	MenuItem,
@@ -18,11 +19,14 @@ import {
 	Step,
 	StepLabel,
 	Stepper,
+	TextField,
 	Theme,
 	Typography,
 	withStyles,
 	WithStyles
 } from '@material-ui/core'
+
+import SearchIcon from '@material-ui/icons/Search'
 
 const styles = (theme: Theme) => createStyles({
 	stepper: {
@@ -125,25 +129,6 @@ export default withStyles(styles)(
 						</Grid>
 					</Paper>
 					<Paper elevation={1} className={classes.paper}>
-						<FormControl className={classes.formControl}>
-							<InputLabel htmlFor="age-example">Age</InputLabel>
-							<Select
-								value={this.state.age}
-								onChange={this.onAgeChange}
-								inputProps={{
-									name: 'age',
-									id: 'age-example',
-								}}
-							>
-								<MenuItem value="">
-									<em>None</em>
-								</MenuItem>
-								<MenuItem value={10}>Ten</MenuItem>
-								<MenuItem value={20}>Twenty</MenuItem>
-								<MenuItem value={30}>Thirty</MenuItem>
-							</Select>
-						</FormControl>
-						
 						<Grid container={true} spacing={8}>
 							<Grid item={true}>
 								<Button color="default" variant="flat">Test Button</Button>
@@ -176,6 +161,37 @@ export default withStyles(styles)(
 								<Button style={{ color: 'red' }} variant="flat">Test Button</Button>
 							</Grid>
 						</Grid>
+					</Paper>
+					<Paper elevation={1} className={classes.paper}>
+						<FormControl className={classes.formControl}>
+							<InputLabel htmlFor="age-example">Age</InputLabel>
+							<Select
+								value={this.state.age}
+								onChange={this.onAgeChange}
+								inputProps={{
+									name: 'age',
+									id: 'age-example',
+								}}
+							>
+								<MenuItem value="">
+									<em>None</em>
+								</MenuItem>
+								<MenuItem value={10}>Ten</MenuItem>
+								<MenuItem value={20}>Twenty</MenuItem>
+								<MenuItem value={30}>Thirty</MenuItem>
+							</Select>
+						</FormControl>
+						<TextField
+							margin="dense"
+							variant="outlined"
+							InputProps={{
+								startAdornment: (
+									<InputAdornment position="start">
+										<SearchIcon />
+									</InputAdornment>
+								),
+							}}
+							/>
 					</Paper>
 				</>
 			);

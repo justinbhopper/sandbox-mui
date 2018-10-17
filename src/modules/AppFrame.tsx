@@ -1,19 +1,20 @@
+import * as classNames from 'classnames';
 import * as React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
-import AppNavBar, { IAppNavBarProps } from "modules/AppNavBar";
+import AppBar from "modules/AppBar";
+import AppNavDrawer, { IAppNavDrawerProps } from "modules/AppNavDrawer";
 import TestScene from 'scenes/TestScene';
 
 import { 
 	createStyles, 
 	Drawer, 
-	Theme, 
+	Theme,
 	withStyles,
 	WithStyles,
 	withWidth
 } from '@material-ui/core'
 import { isWidthDown, WithWidth } from '@material-ui/core/withWidth';
-import * as classNames from 'classnames';
 
 const drawerWidthUnits = {
 	full: 32,
@@ -28,10 +29,22 @@ const styles = (theme: Theme) => {
 
 	return createStyles({
 		root: {
-			width: '100%',
-			minHeight: '100vh'
+			display: 'flex',
+			flexGrow: 1,
+			flexDirection: 'column',
+			zIndex: 1,
+			overflow: 'hidden',
+			position: 'relative'
 		},
-		drawerFull: {
+		main: {
+			display: 'flex',
+			flexDirection: 'row'
+		},
+		appBar: {
+			zIndex: theme.zIndex.drawer + 1
+		},
+		drawer: {
+			position: 'relative',
 			width: drawerWidth.full
 		},
 		drawerCompact: {
@@ -45,24 +58,19 @@ const styles = (theme: Theme) => {
 			margin: '4px auto'
 		},
 		content: {
-			marginLeft: drawerWidth.full,
+			flexGrow: 1,
 			padding: theme.spacing.unit * 2,
 			[theme.breakpoints.up('lg')]: {
 				paddingLeft: theme.spacing.unit * 8,
 				paddingRight: theme.spacing.unit * 8
 			}
 		},
-		contentCompact: {
-			marginLeft: drawerWidth.compact - (theme.spacing.unit * 2),
-			[theme.breakpoints.up('sm')]: {
-				marginLeft: drawerWidth.compact
-			}
-		}
+		toolbar: theme.mixins.toolbar
 	});
 };
 
 export interface IAppFrameProps extends WithStyles<typeof styles>, WithWidth {
-	navBarProps?: IAppNavBarProps;
+	navBarProps?: IAppNavDrawerProps;
 }
 
 export default withWidth()(withStyles(styles)(
@@ -71,21 +79,26 @@ export default withWidth()(withStyles(styles)(
 			const { classes, navBarProps, width } = this.props;
 
 			const compact = isWidthDown('md', width) || (navBarProps && navBarProps.compact);
-			const contentCls = compact ? classNames(classes.content, classes.contentCompact) : classes.content;
+			const drawerCls = compact ? classNames(classes.drawer, classes.drawerCompact) : classes.drawer;
 
 			return (
-				<main className={classes.root}>
-					<Drawer variant="permanent" classes={{ paper: compact ? classes.drawerCompact : classes.drawerFull }}>
-						<AppNavBar compact={compact} {...navBarProps} />
-					</Drawer>
-					<article className={contentCls}>
-						<BrowserRouter>
-							<Switch>
-								<Route exact={true} path="/" component={TestScene} />
-							</Switch>
-						</BrowserRouter>
-					</article>
-				</main>
+				<div className={classes.root}>
+					<AppBar className={classes.appBar} />
+					<main className={classes.main}>
+						<Drawer variant="permanent" classes={{ paper: drawerCls }}>
+							<div className={classes.toolbar} />
+							<AppNavDrawer compact={compact} {...navBarProps} />
+						</Drawer>
+						<article className={classes.content}>
+							<div className={classes.toolbar} />
+							<BrowserRouter>
+								<Switch>
+									<Route exact={true} path="/" component={TestScene} />
+								</Switch>
+							</BrowserRouter>
+						</article>
+					</main>
+				</div>
 			);
 		}
 	}
