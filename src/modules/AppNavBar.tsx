@@ -33,20 +33,23 @@ const styles = (theme: Theme) => createStyles({
 	},
 	menuItem: {
 		'&:hover': {
-			paddingLeft: 20,
-			borderLeft: '4px solid #fff'
+			paddingLeft: (theme.spacing.unit * 2) - 4,
+			borderLeft: '4px solid #fff',
+			[theme.breakpoints.up('sm')]: {
+				paddingLeft: (theme.spacing.unit * 3) - 4
+			}
 		}
 	}
 });
 
 export interface IAppNavBarProps extends WithStyles<typeof styles> {
-	// TODO: options for hiding or showing nav options
+	compact?: boolean;
 }
 
 export default withStyles(styles)(
 	class extends React.Component<IAppNavBarProps> {
 		public render() {
-			const { classes } = this.props;
+			const { classes, compact } = this.props;
 
 			return (
 				<Grid container={true} direction="column" className={classes.root} justify="space-between">
@@ -58,23 +61,23 @@ export default withStyles(styles)(
 						<List>
 							<ListItem button={true} className={classes.menuItem}>
 								<ListItemIcon><DashboardIcon /></ListItemIcon>
-								<ListItemText primary="Dashboard" />
+								{!compact ? <ListItemText primary="Dashboard" /> : ''}
 							</ListItem>
 							<ListItem button={true} className={classes.menuItem}>
 								<ListItemIcon><CalendarTodayIcon /></ListItemIcon>
-								<ListItemText primary="Scheduler" />
+								{!compact ? <ListItemText primary="Scheduler" /> : ''}
 							</ListItem>
 							<ListItem button={true} className={classes.menuItem}>
 								<ListItemIcon><PeopleIcon /></ListItemIcon>
-								<ListItemText primary="Clients" />
+								{!compact ? <ListItemText primary="Clients" /> : ''}
 							</ListItem>
 							<ListItem button={true} className={classes.menuItem}>
 								<ListItemIcon><StatsIcon /></ListItemIcon>
-								<ListItemText primary="Stats" />
+								{!compact ? <ListItemText primary="Stats" /> : ''}
 							</ListItem>
 							<ListItem button={true} className={classes.menuItem}>
 								<ListItemIcon><ReceiptIcon /></ListItemIcon>
-								<ListItemText primary="Billing" />
+								{!compact ? <ListItemText primary="Billing" /> : ''}
 							</ListItem>
 						</List>
 					</Grid>
@@ -82,7 +85,7 @@ export default withStyles(styles)(
 						<List>
 							<ListItem button={true} className={classes.menuItem}>
 								<ListItemIcon><SettingsIcon /></ListItemIcon>
-								<ListItemText primary="Settings" />
+								{!compact ? <ListItemText primary="Settings" /> : ''}
 							</ListItem>
 						</List>
 					</Grid>
