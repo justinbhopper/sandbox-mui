@@ -4,6 +4,7 @@ import * as React from 'react';
 import { 
 	AppBar, 
 	Avatar,
+	Badge,
 	Button,
 	createStyles,
 	IconButton,
@@ -32,6 +33,7 @@ const styles = (theme: Theme) => createStyles({
 	},
 	search: {
 		width: 600,
+		backgroundColor: '#f9f9f9',
 		[theme.breakpoints.down('md')]: {
 			width: 400
 		},
@@ -39,11 +41,17 @@ const styles = (theme: Theme) => createStyles({
 			display: 'none'
 		}
 	},
+	searchInput: {
+
+	},
 	actions: {
 		display: 'flex',
 		alignItems: 'center',
 		justifyContent: 'space-between',
 		color: 'rgba(0, 0, 0, 0.5)'
+	},
+	badge: {
+		margin: theme.spacing.unit * 2
 	},
 	profileMenu: {
 		display: 'flex',
@@ -76,8 +84,10 @@ export default withStyles(styles)(
 							className={classes.search}
 							margin="none"
 							variant="outlined"
+							placeholder="Search for clients or documents..."
 							InputProps={{
 								margin: "dense",
+								className: classes.searchInput,
 								startAdornment: (
 									<InputAdornment position="start">
 										<SearchIcon nativeColor="rgba(0, 0, 0, 0.5)" />
@@ -86,8 +96,16 @@ export default withStyles(styles)(
 							}}
 							/>
 						<div className={classes.actions}>
-							<IconButton><MailIcon /></IconButton>
-							<IconButton><NotificationsIcon /></IconButton>
+							<IconButton>
+								<Badge className={classes.badge} badgeContent="99+" color="primary">
+									<MailIcon />
+								</Badge>
+							</IconButton>
+							<IconButton>
+								<Badge className={classes.badge} badgeContent={3} color="primary">
+									<NotificationsIcon />
+								</Badge>
+							</IconButton>
 							<Button className={classes.profileMenu}>
 								<Avatar src="https://material-ui.com/static/images/uxceo-128.jpg" />
 								<Typography variant="subtitle2" className={classes.profileName}>Wendy Williams</Typography>

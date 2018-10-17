@@ -8,10 +8,6 @@ html {
 	box-sizing: inherit;
 }
 
-body {
-	margin: 0;
-	background-color: #f4f9f8;
-}
 @media print {
 	body {
 		background-color: #fff;

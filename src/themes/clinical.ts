@@ -96,6 +96,14 @@ export default createMuiTheme({
 				color: 'inherit',
 				marginRight: 0
 			}
+		},
+		MuiBadge: {
+			badge: {
+				width: 'auto',
+				minWidth: 22,
+				padding: '0 3px',
+				borderRadius: 5
+			}
 		}
 	}
 });
