@@ -37,6 +37,7 @@ const styles = (theme: Theme) => {
 			position: 'relative'
 		},
 		main: {
+			minHeight: '100vh',
 			display: 'flex',
 			flexDirection: 'row'
 		},
