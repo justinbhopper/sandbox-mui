@@ -30,6 +30,12 @@ const styles = (theme: Theme) => createStyles({
 	logo: {
 		display: 'block',
 		margin: '4px auto'
+	},
+	menuItem: {
+		'&:hover': {
+			paddingLeft: 20,
+			borderLeft: '4px solid #fff'
+		}
 	}
 });
 
@@ -50,23 +56,23 @@ export default withStyles(styles)(
 						</div>
 						<Divider />
 						<List>
-							<ListItem button={true}>
+							<ListItem button={true} className={classes.menuItem}>
 								<ListItemIcon><DashboardIcon /></ListItemIcon>
 								<ListItemText primary="Dashboard" />
 							</ListItem>
-							<ListItem button={true}>
+							<ListItem button={true} className={classes.menuItem}>
 								<ListItemIcon><CalendarTodayIcon /></ListItemIcon>
 								<ListItemText primary="Scheduler" />
 							</ListItem>
-							<ListItem button={true}>
+							<ListItem button={true} className={classes.menuItem}>
 								<ListItemIcon><PeopleIcon /></ListItemIcon>
 								<ListItemText primary="Clients" />
 							</ListItem>
-							<ListItem button={true}>
+							<ListItem button={true} className={classes.menuItem}>
 								<ListItemIcon><StatsIcon /></ListItemIcon>
 								<ListItemText primary="Stats" />
 							</ListItem>
-							<ListItem button={true}>
+							<ListItem button={true} className={classes.menuItem}>
 								<ListItemIcon><ReceiptIcon /></ListItemIcon>
 								<ListItemText primary="Billing" />
 							</ListItem>
@@ -74,7 +80,7 @@ export default withStyles(styles)(
 					</Grid>
 					<Grid container={true} direction="column">
 						<List>
-							<ListItem button={true}>
+							<ListItem button={true} className={classes.menuItem}>
 								<ListItemIcon><SettingsIcon /></ListItemIcon>
 								<ListItemText primary="Settings" />
 							</ListItem>
