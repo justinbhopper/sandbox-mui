@@ -39,7 +39,8 @@ const styles = (theme: Theme) => createStyles({
 		},
 		[theme.breakpoints.down('sm')]: {
 			display: 'none'
-		}
+		},
+		transition: theme.transitions.create('width')
 	},
 	searchInput: {
 
@@ -74,12 +75,12 @@ export default withStyles(styles)(
 	class extends React.Component<IAppBarProps> {
 		public render() {
 			const { classes, className } = this.props;
-
+			
 			return (
 				<AppBar elevation={2} color="inherit" position="absolute" className={classNames(classes.root, className)}>
 					<Toolbar className={classes.toolbar}>
 						<RemarkableHealthIcon fill="red" stroke="white" size="medium" />
-						
+					
 						<TextField
 							className={classes.search}
 							margin="none"
@@ -95,6 +96,7 @@ export default withStyles(styles)(
 								),
 							}}
 							/>
+
 						<div className={classes.actions}>
 							<IconButton>
 								<Badge className={classes.badge} badgeContent="99+" color="primary">
